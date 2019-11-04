@@ -10,8 +10,33 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: Index
+      component: () => import('./views/index.vue'),
+      children: [
+        {
+          path: '',
+          redirect: '/home'
+        },
+        {
+          path: '/home',
+          name: 'home',
+          component: () => import('./views/Home.vue')
+        },
+        {
+          path: '/order',
+          name: 'order',
+          component: () => import('./views/Order.vue')
+        },
+        {
+          path: '/me',
+          name: 'me',
+          component: () => import('./views/Me.vue')
+        },
+        {
+          path: '/address',
+          name: 'address',
+          component: () => import('./views/Address.vue')
+        }
+      ]
     }
   ]
 })
